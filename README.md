@@ -22,7 +22,7 @@ Outputs file for each host to `out` directory in current working folder for easy
 
 ## Install 
 ```
-$ go get github.com/mlcsec/gohead
+go get github.com/mlcsec/gohead
 ```
 
 ## Help
