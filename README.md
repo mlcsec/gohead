@@ -2,8 +2,8 @@
 
 Check for missing HTTP security headers, verbose server headers, and sensitive software headers concurrently.
 
-`[+]` indicates a present server/software header<br>
-`[-]` indicates a missing security header
+`[+]` indicates a present server/software header (green)<br> 
+`[-]` indicates a missing security header (red)
 
 Outputs file for each host to `out` directory in current working folder for easy navigation of results.
 
