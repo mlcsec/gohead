@@ -63,6 +63,7 @@ func runChecks (){
                     file_name_http := remHttp+"_http"
 
                     err := os.Mkdir("out", 0755)
+		    check(err)
                     f, err := os.Create("out/"+file_name_http)
                     check(err)
                     defer f.Close()
