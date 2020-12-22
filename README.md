@@ -37,7 +37,7 @@ Usage of gohead:
 ## Example
 Takes input via stdin - `cat` a range of hosts returned from httprobe or `echo` a single host to `gohead`.
 ```
-$ assetfinder bitso.com | httprobe | gohead
+$ assetfinder -subs-only bitso.com | httprobe | gohead
 [>] http://blog.bitso.com
 [+] Server: openresty
 [+] X-Powered-By: Medium
