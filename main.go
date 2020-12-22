@@ -62,9 +62,8 @@ func runChecks (){
                     remHttp := strings.Replace(domain_string,"http://","",-1)
                     file_name_http := remHttp+"_http"
 
-                    err := os.Mkdir("out", 0755)
-		    check(err)
-                    f, err := os.Create("out/"+file_name_http)
+                    err := os.Mkdir("out", 0666)
+		    f, err := os.Create("out/"+file_name_http)
                     check(err)
                     defer f.Close()
                     httpw := bufio.NewWriter(f)
