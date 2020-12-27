@@ -61,10 +61,13 @@ func runChecks (){
                 if strings.Contains(domain_string, "http://") {
                     remHttp := strings.Replace(domain_string,"http://","",-1)
                     file_name_http := remHttp+"_http"
-                    if _,err := os.Stat("./out"); os.IsNotExist(err){
-                        os.Mkdir("out", 0700)
+
+                    dir := "out"
+                    if _, err := os.Stat("./out"); os.IsNotExist(err) {
+                        err := os.Mkdir(dir, 0750)
+                        check(err)
                     }
-                    check(err)
+
                     f, err := os.Create("out/"+file_name_http)
                     check(err)
                     defer f.Close()
