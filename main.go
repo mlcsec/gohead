@@ -61,9 +61,11 @@ func runChecks (){
                 if strings.Contains(domain_string, "http://") {
                     remHttp := strings.Replace(domain_string,"http://","",-1)
                     file_name_http := remHttp+"_http"
-
-                    err := os.Mkdir("out", 0666)
-		    f, err := os.Create("out/"+file_name_http)
+                    if _,err := os.Stat("./out"); os.IsNotExist(err){
+                        os.Mkdir("out", 0700)
+                    }
+                    check(err)
+                    f, err := os.Create("out/"+file_name_http)
                     check(err)
                     defer f.Close()
                     httpw := bufio.NewWriter(f)
@@ -94,7 +96,6 @@ func runChecks (){
                 }   else {
                     remHttps := strings.Replace(domain_string,"https://","",-1)
                     file_name_https := remHttps+"_https"
-
                     f, err := os.Create("out/"+file_name_https)
                     check(err)
                     defer f.Close()
