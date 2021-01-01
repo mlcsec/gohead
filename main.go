@@ -51,7 +51,6 @@ func runChecks (){
                     continue
                 }
                 defer req.Body.Close()
-                // Colors
                 w := color.New(color.FgCyan)//.Add(color.Bold)
                 r := color.New(color.FgRed)//.Add(color.Bold)
                 g := color.New(color.FgGreen)//.Add(color.Bold)
@@ -61,18 +60,10 @@ func runChecks (){
                 if strings.Contains(domain_string, "http://") {
                     remHttp := strings.Replace(domain_string,"http://","",-1)
                     file_name_http := remHttp+"_http"
-
-                    dir := "out"
-                    if _, err := os.Stat("./out"); os.IsNotExist(err) {
-                        err := os.Mkdir(dir, 0750)
-                        check(err)
-                    }
-
                     f, err := os.Create("out/"+file_name_http)
                     check(err)
                     defer f.Close()
                     httpw := bufio.NewWriter(f)
-
                     w.Println("[>] " + url)
                     _, err = w.Fprintf(httpw, "[>] " + url+"\n")
                     check(err)
@@ -144,5 +135,10 @@ func main() {
     flag.IntVar(&concurrency, "c", 20, "concurrency level")
     flag.IntVar(&to, "t", 10000, "timeout (milliseconds)")
     flag.Parse()
+    dir := "out"
+    if _, err := os.Stat("./out"); os.IsNotExist(err) {
+        err := os.Mkdir(dir, 0750)
+        check(err)
+    }
     runChecks()
 }
